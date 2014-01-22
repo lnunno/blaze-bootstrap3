@@ -12,6 +12,7 @@ module Components where
     type Buttons = [Html]
     type ButtonGroup = Html
     type ButtonToolbar = Html
+    type HtmlLs = [Html]
 
     glyphicon :: IconName -> Html
     glyphicon iconName = H.span noHtml ! class_ (toValue strVal)
@@ -45,5 +46,17 @@ module Components where
 
     buttonToolbar' :: [ButtonGroup] -> ButtonToolbar
     buttonToolbar' groupLs = H.div (concatHtml groupLs) ! class_ (toValue "btn-toolbar") ! role (toValue "toolbar")
+
+
+    nav htmlLs navType = nav_ htmlLs navType None
+
+    nav_ :: HtmlLs -> NavType -> NavModifier -> Html
+    nav_ htmlLs navType modifier = ul (concatHtml htmlLs) ! class_ classVal
+        where
+            baseType = "nav nav-" ++ (show navType)
+            classStr 
+                | modifier == None = baseType
+                | otherwise = baseType ++ " nav-" ++ (show modifier)
+            classVal = toValue classStr
 
 

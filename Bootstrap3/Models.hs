@@ -25,6 +25,20 @@ module Models where
         show Small =  "sm"
         show ExtraSmall =  "xs"
 
+    data NavType = Tabs | Pills deriving (Eq)
+
+    instance Show NavType where
+        show Tabs = "tabs"
+        show Pills = "pills" 
+        
+
+    data NavModifier = Justified | Stacked | None deriving (Eq)
+
+    instance Show NavModifier where
+        show Justified = "justified"
+        show Stacked = "stacked" 
+    
+
     noHtml        = toHtml ""
 
     {-
