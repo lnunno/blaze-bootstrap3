@@ -1,4 +1,4 @@
-module Bootstrap3.CDN where
+module CDN where
     
     import Text.Blaze.Html5
     import Text.Blaze.Html5.Attributes
@@ -22,13 +22,12 @@ module Bootstrap3.CDN where
 
     noHtml        = toHtml ""
 
-    bootstrapcss = link ! rel stylesheetVal ! href (cssLinks !! 0)
-
     css :: Int -> Html
     css n        = link ! rel stylesheetVal ! href (cssLinks !! n)
-    jquery       = script noHtml ! src jqueryVal
-    bootstrapjs  = script noHtml ! src jsVal 
 
+    bootstrapcss = css 0
+    bootstrapjs  = script noHtml ! src jsVal 
+    jquery       = script noHtml ! src jqueryVal
 
     fontAwesome  = link ! rel stylesheetVal ! href fontAwesomeVal
 
