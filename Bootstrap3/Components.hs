@@ -1,8 +1,8 @@
 module Components where
 
-    import Text.Blaze.Html5
+    import Text.Blaze.Html5 hiding (head)
     import Text.Blaze.Html5.Attributes
-    import Text.Blaze.Html5 as H 
+    import Text.Blaze.Html5 as H hiding (head)
     import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
     import Models
@@ -59,4 +59,24 @@ module Components where
                 | otherwise = baseType ++ " nav-" ++ (show modifier)
             classVal = toValue classStr
 
+    breadcrumbs :: HtmlLs -> Html
+    breadcrumbs htmlLs = ol (concatHtml htmlLs) ! class_ (toValue "breadcrumb")
+
+    pagination htmlLs = pagination_ htmlLs Normal
+
+    pagination_ :: HtmlLs -> Size -> Html
+    pagination_ htmlLs size = ul (concatHtml htmlLs) ! class_ classVal 
+        where
+            pg = "pagination"
+            classStr
+                | size == Normal = pg
+                | otherwise = pg ++ " " ++ pg ++ "-" ++ (show size)
+            classVal = toValue classStr
+
+    pager ls = ul (concatHtml updatedLs) ! class_ (toValue "pager") 
+        where 
+            liLs = toHtmlLs ls
+            a = head liLs
+            z = last liLs
+            updatedLs = (a ! class_ (toValue "previous"):((init (tail liLs))++[z ! class_ (toValue "next")]))
 
