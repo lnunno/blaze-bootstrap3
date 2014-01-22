@@ -7,10 +7,11 @@ module Examples where
     import Utils
     import Components
     import Templates
+    import Models
 
     main = do
         let btn = bootstrapButton_ Warning (toHtml "Button") Large
-        saveHtmlFile "examples/rawTemplate.html" (rawTemplate btn)
+        saveHtmlFile "examples/rawTemplate.html" (rawTemplate btn >> glyphicon "adjust")
 
 
 

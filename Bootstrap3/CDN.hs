@@ -3,6 +3,7 @@ module CDN where
     import Text.Blaze.Html5
     import Text.Blaze.Html5.Attributes
     import Text.Blaze.Html.Renderer.Pretty
+    import Models
 
     cssLinks      = [
             toValue "http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css",
