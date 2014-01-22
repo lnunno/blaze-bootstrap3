@@ -6,3 +6,6 @@ module Utils where
 
     saveHtmlFile :: FilePath -> Html -> IO ()
     saveHtmlFile fp html = writeFile fp (renderHtml html) 
+
+    concatHtml :: [Html] -> Html
+    concatHtml htmlLs = sequence_ htmlLs

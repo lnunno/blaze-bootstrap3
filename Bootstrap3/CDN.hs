@@ -19,9 +19,6 @@ module CDN where
     stylesheetVal = toValue "stylesheet"
     fontAwesomeVal = toValue "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
 
-
-    noHtml        = toHtml ""
-
     css :: Int -> Html
     css n        = link ! rel stylesheetVal ! href (cssLinks !! n)
 
