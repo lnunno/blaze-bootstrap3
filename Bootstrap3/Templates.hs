@@ -9,7 +9,10 @@ module Templates where
     import CSS
     import Components
 
-    headImports n = H.head $ jquery >> css n >> bootstrapjs >> fontAwesome
+    -- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    mobileMeta = meta ! name (toValue "viewport") ! content (toValue "width=device-width, initial-scale=1.0")
+
+    headImports n = H.head $ jquery >> css n >> bootstrapjs >> fontAwesome >> mobileMeta
 
     rawTemplate_ innerHtml n = docTypeHtml $ headImports n >> body innerHtml
 
