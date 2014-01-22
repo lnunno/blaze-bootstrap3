@@ -30,6 +30,3 @@ module CDN where
     jquery       = script noHtml ! src jqueryVal
 
     fontAwesome  = link ! rel stylesheetVal ! href fontAwesomeVal
-
-
-

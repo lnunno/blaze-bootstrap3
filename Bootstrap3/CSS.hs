@@ -2,6 +2,8 @@ module CSS where
 
     import Text.Blaze.Html5
     import Text.Blaze.Html5.Attributes
+    import Text.Blaze.Html5 as H
+    import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
 
     data InfoType = Default | Primary | Success | Info | Warning | Danger | Link  deriving (Eq)
@@ -39,3 +41,8 @@ module CSS where
     imageCircle     = img ! class_ (toValue "img-circle")
     imageThumbnail  = img ! class_ (toValue "img-thumbnail")
 
+    {-
+    Helper classes
+    -}
+    closeIcon = button (toHtml "&times;") ! type_ (toValue "button") ! class_ (toValue "close") ! customAttribute (stringTag "aria-hidden") (toValue "true")
+    caret innerHtml = H.span innerHtml ! class_ (toValue "caret")
