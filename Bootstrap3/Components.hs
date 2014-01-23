@@ -1,8 +1,8 @@
 module Components where
 
-    import Text.Blaze.Html5 hiding (head)
+    import Text.Blaze.Html5 hiding (head,map)
     import Text.Blaze.Html5.Attributes
-    import Text.Blaze.Html5 as H hiding (head)
+    import Text.Blaze.Html5 as H hiding (head,map)
     import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
     import Models
@@ -92,7 +92,8 @@ module Components where
     alert :: Html -> InfoType -> Html
     alert innerHtml infoType = H.div innerHtml ! class_ (toValue (subStyleclasses "alert" [show infoType])) 
 
-    progress innerHtml = H.div innerHtml ! class_ (toValue "progress")
+    progress :: Html -> [String] -> Html
+    progress innerHtml modifiers = H.div innerHtml ! class_ (toValue (subStyleclasses "progress" modifiers))
 
     progressBar :: Html -> InfoType -> Int -> Html
     progressBar innerHtml infoType width = H.div innerHtml ! styleClass ! pRole ! s
@@ -101,3 +102,13 @@ module Components where
             pRole = role (toValue "progressbar")
             s = A.style (toValue ("width: " ++ (show width) ++ "%"))
 
+    {-
+    Wraps the given list of HTML elements in an unordered list and makes the list items part of the ul group.
+    -}
+    listGroup :: [Html] -> Html
+    listGroup items = 
+        let 
+            lis = concatHtml $ map (\a -> a ! class_ (toValue "list-group-item")) $ toHtmlLs items
+            u = ul lis ! class_ (toValue "list-group")
+        in
+            u
