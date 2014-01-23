@@ -16,6 +16,12 @@ module Utils where
     toHtmlLs :: [Html] -> [Html]
     toHtmlLs ls = map (\h -> li h) ls
 
+    {-
+    Wrap all elements with the supplied tag.
+    -}
+    toHtmlLs' :: [Html] -> (Html -> Html) -> [Html]
+    toHtmlLs' ls htmlFunc = map (\h -> htmlFunc h) ls
+
     subStyleclasses :: String -> [String] -> String
     subStyleclasses baseclass subclasses = 
         if length subclasses == 1 && (head subclasses) == ""
