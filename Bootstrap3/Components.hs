@@ -80,3 +80,24 @@ module Components where
             z = last liLs
             updatedLs = (a ! class_ (toValue "previous"):((init (tail liLs))++[z ! class_ (toValue "next")]))
 
+    badge innerHtml = H.span innerHtml ! class_ (toValue "badge")
+
+    jumbotron innerHtml = H.div innerHtml ! class_ (toValue "jumbotron")
+
+    pageHeader innerHtml = H.div innerHtml ! class_ (toValue "page-header")
+
+    labelBootstrap :: Html -> InfoType -> Html
+    labelBootstrap innerHtml infoType = H.span innerHtml ! class_ (toValue (subStyleclasses "label" [show infoType]))
+
+    alert :: Html -> InfoType -> Html
+    alert innerHtml infoType = H.div innerHtml ! class_ (toValue (subStyleclasses "alert" [show infoType])) 
+
+    progress innerHtml = H.div innerHtml ! class_ (toValue "progress")
+
+    progressBar :: Html -> InfoType -> Int -> Html
+    progressBar innerHtml infoType width = H.div innerHtml ! styleClass ! pRole ! s
+        where
+            styleClass = class_ (toValue (subStyleclasses "progress-bar" [show infoType]))
+            pRole = role (toValue "progressbar")
+            s = A.style (toValue ("width: " ++ (show width) ++ "%"))
+

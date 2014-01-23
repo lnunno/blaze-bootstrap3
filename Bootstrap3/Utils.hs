@@ -1,6 +1,6 @@
 module Utils where
 
-    import Text.Blaze.Html5 hiding (map)
+    import Text.Blaze.Html5 hiding (head,map)
     import Text.Blaze.Html5.Attributes
     import Text.Blaze.Html.Renderer.Pretty
 
@@ -15,3 +15,18 @@ module Utils where
     -}
     toHtmlLs :: [Html] -> [Html]
     toHtmlLs ls = map (\h -> li h) ls
+
+    subStyleclasses :: String -> [String] -> String
+    subStyleclasses baseclass subclasses = 
+        if length subclasses == 1 && (head subclasses) == ""
+            then 
+                baseclass
+            else 
+                baseclass ++ (concatMap 
+                    (\scl -> 
+                        if scl == "active" 
+                            then
+                                " active" 
+                            else
+                                " " ++ baseclass ++ "-" ++ scl) 
+                    subclasses)

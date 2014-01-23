@@ -37,9 +37,20 @@ module Models where
     instance Show NavModifier where
         show Justified = "justified"
         show Stacked = "stacked" 
-    
+
+
+    data AlertModifier = Dismissable | NoAlertModifier deriving (Eq)
+
+    instance Show AlertModifier where
+        show Dismissable = "dismissable" 
 
     noHtml        = toHtml ""
+
+    data IsActive = Active | NotActive deriving (Eq)
+
+    instance Show IsActive where
+        show Active = "active"
+        show _ = "" 
 
     {-
     Custom attributes.
