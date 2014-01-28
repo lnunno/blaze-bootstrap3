@@ -49,8 +49,8 @@ module Components where
 
     nav htmlLs navType = nav_ htmlLs navType None
 
-    nav_ :: HtmlLs -> NavType -> NavModifier -> Html
-    nav_ htmlLs navType modifier = ul (concatHtml htmlLs) ! class_ classVal
+    nav_ :: [Html] -> NavType -> NavModifier -> Html
+    nav_ htmlLs navType modifier = ul (concatHtml (toHtmlLs htmlLs)) ! class_ classVal
         where
             baseType = "nav nav-" ++ (show navType)
             classStr 

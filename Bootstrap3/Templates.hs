@@ -8,6 +8,7 @@ module Templates where
     import CDN
     import CSS
     import Components
+    import Models
 
     -- <meta name="viewport" content="width=device-width, initial-scale=1.0">
     mobileMeta = meta ! name (toValue "viewport") ! content (toValue "width=device-width, initial-scale=1.0")
@@ -17,5 +18,7 @@ module Templates where
     rawTemplate_ innerHtml n = docTypeHtml $ headImports n >> body innerHtml
 
     rawTemplate innerHtml = rawTemplate_ innerHtml 0
+
+
 
 

@@ -6,7 +6,7 @@ module Models where
     import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
 
-    data InfoType = Default | Primary | Success | Info | Warning | Danger | Link  deriving (Eq)
+    data InfoType = Default | Primary | Success | Info | Warning | Danger | Link  deriving (Eq,Enum)
 
     instance Show InfoType where
         show Default = "default"
@@ -17,7 +17,7 @@ module Models where
         show Danger = "danger"
         show Link = "link"
 
-    data Size = Large | Normal | Medium | Small | ExtraSmall deriving (Eq)
+    data Size = Large | Normal | Medium | Small | ExtraSmall deriving (Eq,Enum)
 
     instance Show Size where
         show Large =  "lg"
@@ -56,9 +56,9 @@ module Models where
     {-
     Custom attributes.
     -}
-    ariaHidden = customAttribute (stringTag "aria-hidden") 
+    ariaHidden = customAttribute (stringTag "aria-hidden")
 
-    role = customAttribute (stringTag "role")
+    role = customAttribute (stringTag "role") 
 
     dismissModalAttribute = dataAttribute (stringTag "dismiss") (toValue "modal")
 

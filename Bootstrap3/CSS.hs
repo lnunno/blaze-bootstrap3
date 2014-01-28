@@ -30,6 +30,8 @@ module CSS where
     closeIcon = button (toHtml "&times;") ! type_ (toValue "button") ! class_ (toValue "close") ! ariaHidden (toValue "true")
     caret innerHtml = H.span innerHtml ! class_ (toValue "caret")
 
+    container innerHtml = H.div innerHtml ! class_ (toValue "container")
+
     row :: Html -> Html
     row rowHtml = H.div rowHtml ! class_ (toValue "row")
 
