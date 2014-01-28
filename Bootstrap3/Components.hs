@@ -12,7 +12,30 @@ module Components where
     type Buttons = [Html]
     type ButtonGroup = Html
     type ButtonToolbar = Html
-    type HtmlLs = [Html]
+
+    bootstrapButton_ :: InfoType -> Html -> Size -> Html
+    bootstrapButton_ infoType innerHtml size = button innerHtml ! class_ (toValue strVal)
+        where
+            strVal 
+                | size == Normal = "btn btn-" ++ (show infoType)
+                | otherwise = "btn btn-" ++ (show infoType) ++ " btn-" ++ (show size)
+
+    {-
+    Button with normal size.
+    -}
+    bootstrapButton infoType innerHtml = bootstrapButton_ infoType innerHtml Normal
+
+    imageRounded    = img ! class_ (toValue "img-rounded")
+    imageCircle     = img ! class_ (toValue "img-circle")
+    imageThumbnail  = img ! class_ (toValue "img-thumbnail")
+
+    {-
+    Helper classes
+    -}
+    closeIcon = button (toHtml "&times;") ! type_ (toValue "button") ! class_ (toValue "close") ! ariaHidden (toValue "true")
+    caret innerHtml = H.span innerHtml ! class_ (toValue "caret")
+
+    container innerHtml = H.div innerHtml ! class_ (toValue "container")
 
     glyphicon :: IconName -> Html
     glyphicon iconName = H.span noHtml ! class_ (toValue strVal)
@@ -58,13 +81,13 @@ module Components where
                 | otherwise = baseType ++ " nav-" ++ (show modifier)
             classVal = toValue classStr
 
-    breadcrumbs :: HtmlLs -> Html
-    breadcrumbs htmlLs = ol (concatHtml htmlLs) ! class_ (toValue "breadcrumb")
+    breadcrumbs :: [Html] -> Html
+    breadcrumbs htmlLs = ol (concatHtml (toHtmlLs htmlLs)) ! class_ (toValue "breadcrumb")
 
     pagination htmlLs = pagination_ htmlLs Normal
 
-    pagination_ :: HtmlLs -> Size -> Html
-    pagination_ htmlLs size = ul (concatHtml htmlLs) ! class_ classVal 
+    pagination_ :: [Html] -> Size -> Html
+    pagination_ htmlLs size = ul (concatHtml (toHtmlLs htmlLs)) ! class_ classVal 
         where
             pg = "pagination"
             classStr

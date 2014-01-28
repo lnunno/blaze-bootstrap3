@@ -17,7 +17,7 @@ module Models where
         show Danger = "danger"
         show Link = "link"
 
-    data Size = Large | Normal | Medium | Small | ExtraSmall deriving (Eq,Enum)
+    data Size = Large | Medium | Small | ExtraSmall | Normal deriving (Eq,Enum)
 
     instance Show Size where
         show Large =  "lg"
