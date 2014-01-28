@@ -17,11 +17,12 @@ module Models where
         show Danger = "danger"
         show Link = "link"
 
-    data Size = Large | Normal | Small | ExtraSmall deriving (Eq)
+    data Size = Large | Normal | Medium | Small | ExtraSmall deriving (Eq)
 
     instance Show Size where
         show Large =  "lg"
         show Normal =  ""
+        show Medium = "md"
         show Small =  "sm"
         show ExtraSmall =  "xs"
 

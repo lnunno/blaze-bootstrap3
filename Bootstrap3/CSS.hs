@@ -6,8 +6,8 @@ module CSS where
     import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
     import Models
-    
-    
+    import Utils
+
     bootstrapButton_ :: InfoType -> Html -> Size -> Html
     bootstrapButton_ infoType innerHtml size = button innerHtml ! class_ (toValue strVal)
         where
@@ -29,3 +29,12 @@ module CSS where
     -}
     closeIcon = button (toHtml "&times;") ! type_ (toValue "button") ! class_ (toValue "close") ! ariaHidden (toValue "true")
     caret innerHtml = H.span innerHtml ! class_ (toValue "caret")
+
+    row :: Html -> Html
+    row rowHtml = H.div rowHtml ! class_ (toValue "row")
+
+    columnClass :: Bool -> Size -> Int -> String
+    columnClass offset size i = if offset then offsetClass else normalClass
+        where
+            normalClass = "col-" ++ (show size) ++ "-" ++ (show i)
+            offsetClass = "col-" ++ (show size) ++ "-offset-" ++ (show i)
