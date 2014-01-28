@@ -47,7 +47,6 @@ module Components where
     buttonToolbar' :: [ButtonGroup] -> ButtonToolbar
     buttonToolbar' groupLs = H.div (concatHtml groupLs) ! class_ (toValue "btn-toolbar") ! role (toValue "toolbar")
 
-
     nav htmlLs navType = nav_ htmlLs navType None
 
     nav_ :: HtmlLs -> NavType -> NavModifier -> Html
