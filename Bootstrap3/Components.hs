@@ -112,3 +112,15 @@ module Components where
             u = ul lis ! class_ (toValue "list-group")
         in
             u
+
+    panel :: Html -> Html -> Html -> Html -> InfoType -> Html
+    panel headingHtml bodyHtml bodyAddendumHtml footerHtml infoType = H.div h ! class_ (toValue (subStyleclasses "panel" [show infoType]))
+        where
+            header = H.div headingHtml ! class_ (toValue "panel-heading")
+            body = H.div bodyHtml ! class_ (toValue "panel-body")
+            footer = H.div footerHtml ! class_ (toValue "panel-footer")
+            h = header >> body >> bodyAddendumHtml >> footer
+
+    well :: Html -> Size -> Html
+    well html size = H.div html ! class_ (toValue (subStyleclasses "well" [show size]))
+
