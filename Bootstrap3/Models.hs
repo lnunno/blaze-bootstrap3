@@ -58,3 +58,7 @@ module Models where
     ariaHidden = customAttribute (stringTag "aria-hidden") 
 
     role = customAttribute (stringTag "role")
+
+    dismissModalAttribute = dataAttribute (stringTag "dismiss") (toValue "modal")
+
+    closeButton = button (toHtml "&times;") ! type_ (toValue "button") ! dismissModalAttribute ! ariaHidden (toValue "true")
