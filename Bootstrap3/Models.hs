@@ -62,4 +62,14 @@ module Models where
 
     dismissModalAttribute = dataAttribute (stringTag "dismiss") (toValue "modal")
 
+    dataSlide = dataAttribute (stringTag "slide")
+
+    dataSlideTo = dataAttribute (stringTag "slide-to")
+
+    dataTarget = dataAttribute (stringTag "target")
+
+    dataSrc = dataAttribute (stringTag "src")
+
+    dataRide = dataAttribute (stringTag "ride")
+
     closeButton = button (toHtml "&times;") ! type_ (toValue "button") ! dismissModalAttribute ! ariaHidden (toValue "true")
