@@ -13,7 +13,13 @@ module CDN where
             toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/cosmo/bootstrap.min.css",
             toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/cyborg/bootstrap.min.css",
             toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/flatly/bootstrap.min.css",
-            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/journal/bootstrap.min.css"
+            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/journal/bootstrap.min.css",
+            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/readable/bootstrap.min.css",
+            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/simplex/bootstrap.min.css",
+            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/slate/bootstrap.min.css",
+            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/spacelab/bootstrap.min.css",
+            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/united/bootstrap.min.css",
+            toValue "http://netdna.bootstrapcdn.com/bootswatch/3.0.3/yeti/bootstrap.min.css"
             ]
     jsVal         = toValue "http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"
     jqueryVal     = toValue "http://code.jquery.com/jquery-1.10.2.min.js"

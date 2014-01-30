@@ -18,7 +18,7 @@ module Components where
         where
             strVal 
                 | size == Normal = "btn btn-" ++ (show infoType)
-                | otherwise = "btn btn-" ++ (show infoType) ++ " btn-" ++ (show size)
+                | otherwise = "btn btn-" ++ (show size) ++ " btn-" ++ (show infoType)
 
     {-
     Button with normal size.
@@ -145,4 +145,12 @@ module Components where
 
     well :: Html -> Size -> Html
     well html size = H.div html ! class_ (toValue (subStyleclasses "well" [show size]))
+
+    pullLeft    = class_ (toValue "pull-left")
+    pullRight   = class_ (toValue "pull-right")
+    mediaObject = class_ (toValue "media-object")
+    mediaBody html    = H.div html ! class_ (toValue "media-body")
+    mediaHeading html = h4 html    ! class_ (toValue "media-heading")   
+    media innerHtml   = H.div innerHtml ! class_ (toValue "media")
+
 

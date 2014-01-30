@@ -20,7 +20,7 @@ module Examples where
             btns = btnExpl >> (concatHtml . toHtmlRows) [concatHtml [bootstrapButton_ t (toHtml (show t)) size | t <- [Default .. Link]] | size <- [Large .. ExtraSmall]]
             innerHtml = (n >> j >> (container (b >> als >> btns)))
         in 
-            rawTemplate innerHtml
+            rawTemplate_ innerHtml 0
 
     main = do
         saveHtmlFile "examples/ex1.html" ex1
