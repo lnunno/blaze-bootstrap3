@@ -92,6 +92,16 @@ module Components where
                 | otherwise = baseType ++ " nav-" ++ (show modifier)
             classVal = toValue classStr
 
+    navbarDefault html = H.nav html ! class_ (toValue (subStyleclasses "navbar" ["default"])) ! role (toValue "navigation")
+
+    navbarInverse html = H.nav html ! class_ (toValue (subStyleclasses "navbar" ["inverse"])) ! role (toValue "navigation")
+
+    navbarFixedTop html = H.nav html ! class_ (toValue (subStyleclasses "navbar" ["default", "fixed-top"])) ! role (toValue "navigation")
+
+    navbarFixedBottom html = H.nav html ! class_ (toValue (subStyleclasses "navbar" ["default", "fixed-bottom"])) ! role (toValue "navigation")
+
+    navbarStaticTop html = H.nav html ! class_ (toValue (subStyleclasses "navbar" ["default", "static-top"])) ! role (toValue "navigation")
+
     breadcrumbs :: [Html] -> Html
     breadcrumbs htmlLs = ol (concatHtml (toHtmlLs htmlLs)) ! class_ (toValue "breadcrumb")
 
