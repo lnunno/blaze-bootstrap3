@@ -42,6 +42,17 @@ module Components where
         where
             strVal = "glyphicon glyphicon-" ++ iconName
 
+    fontAwesome_ :: IconName -> Int -> Bool -> Html
+    fontAwesome_ iconName sizeIncrease isSpinning = H.i noHtml ! class_ (toValue (subStyleclasses "fa" subclasses))
+        where
+            sizeClass
+                | sizeIncrease == 1 = "lg"  
+                | sizeIncrease >  1 = (show sizeIncrease) ++ "x"
+                | otherwise         = ""
+            spinClass = if isSpinning then "" else "spin" 
+            subclasses = iconName:spinClass:sizeClass:[]
+
+
     dropdown :: [Html] -> Html
     dropdown htmlLs = ul (concatHtml htmlLs) ! class_ (toValue "dropdown-menu") ! role (toValue "menu")
 
@@ -108,8 +119,8 @@ module Components where
 
     pageHeader innerHtml = H.div innerHtml ! class_ (toValue "page-header")
 
-    labelBootstrap :: Html -> InfoType -> Html
-    labelBootstrap innerHtml infoType = H.span innerHtml ! class_ (toValue (subStyleclasses "label" [show infoType]))
+    bootstrapLabel :: Html -> InfoType -> Html
+    bootstrapLabel innerHtml infoType = H.span innerHtml ! class_ (toValue (subStyleclasses "label" [show infoType]))
 
     alert :: Html -> InfoType -> Html
     alert innerHtml infoType = H.div innerHtml ! class_ (toValue (subStyleclasses "alert" [show infoType])) 

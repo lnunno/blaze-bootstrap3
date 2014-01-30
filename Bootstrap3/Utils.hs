@@ -31,9 +31,8 @@ module Utils where
             else 
                 baseclass ++ (concatMap 
                     (\scl -> 
-                        if scl == "active" 
-                            then
-                                " active" 
-                            else
-                                " " ++ baseclass ++ "-" ++ scl) 
+                        if scl == "active" then " active" 
+                        else
+                            if scl == "" then "" 
+                            else " " ++ baseclass ++ "-" ++ scl) 
                     subclasses)
