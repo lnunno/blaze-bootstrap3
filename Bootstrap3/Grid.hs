@@ -19,3 +19,13 @@ module Grid where
         where
             normalClass = "col-" ++ (show size) ++ "-" ++ (show i)
             offsetClass = "col-" ++ (show size) ++ "-offset-" ++ (show i)
+
+    column :: Size -> Int -> Int -> Html -> Html 
+    column size i offset html = 
+        let 
+            offsetClass 
+                | offset > 0 = " " ++ columnClass True size offset
+                | otherwise = ""
+            styleClass = (columnClass False size i) ++ offsetClass
+        in
+            H.div html ! class_ (toValue styleClass)
