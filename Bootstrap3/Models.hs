@@ -54,6 +54,13 @@ module Models where
         show _ = "" 
 
     {-
+    Special style classes.
+    -}
+    pullLeft    = class_ (toValue "pull-left")
+    pullRight   = class_ (toValue "pull-right")
+    mediaObject = class_ (toValue "media-object")
+
+    {-
     Custom attributes.
     -}
     ariaHidden = customAttribute (stringTag "aria-hidden")
