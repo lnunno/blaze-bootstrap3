@@ -102,6 +102,10 @@ module Components where
 
     navbarStaticTop html = H.nav html ! class_ (toValue (subStyleclasses "navbar" ["default", "static-top"])) ! role (toValue "navigation")
 
+    navbarHeader html = H.div html ! class_ (toValue "navbar-header") 
+
+    navbarBody html = H.div html ! class_ (toValue "navbar-collapse collapse")
+
     breadcrumbs :: [Html] -> Html
     breadcrumbs htmlLs = ol (concatHtml (toHtmlLs htmlLs)) ! class_ (toValue "breadcrumb")
 
