@@ -5,3 +5,6 @@ cabal-dev
 *.chi
 *.chs.h
 .virthualenv
+
+project.sublime-project
+project.sublime-workspace

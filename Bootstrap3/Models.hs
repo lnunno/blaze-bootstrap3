@@ -31,7 +31,6 @@ module Models where
     instance Show NavType where
         show Tabs = "tabs"
         show Pills = "pills" 
-        
 
     data NavModifier = Justified | Stacked | None deriving (Eq)
 
