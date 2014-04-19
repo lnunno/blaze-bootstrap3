@@ -41,6 +41,9 @@ module Examples where
     -}
     componentExample = 
         let
+            btns = mconcat [bootstrapButton infoType h | infoType <- [Default .. Link], h <- (take 2 latinHtmlLs) ]
+            bs = [bootstrapButton infoType h | (infoType,h) <- (zip [Default .. Link] latinHtmlLs)]
+            bg = buttonGroup bs
             bars = mconcat $ map (\pb -> mconcat [progress pb [],progress pb ["striped"],progress pb ["striped","active"]]) $ [progressBar noHtml infoType width | infoType <- [Primary .. Danger], width <- [25,100]]
             lsGrp = listGroup latinHtmlLs
             pgr = pager [toLink "Previous" "#", toLink "Next" "#"]
@@ -48,10 +51,10 @@ module Examples where
             bcumbs = breadcrumbs [toLink "Foo" "#", toLink "Bar" "#", toLink "Baz" "#"]
             pnls = mconcat [panel (toHtml "This is a heading") (toHtml "This is the body") noHtml (toHtml "This is the footer") infoType | infoType <- [Default .. Danger]] 
             -- Wrap the html in a container.
-            allHtml = container $ mconcat [bars,lsGrp,pnls,pgs,pgr,bcumbs]
+            allHtml = container $ mconcat [btns,bg,bars,lsGrp,pnls,pgs,pgr,bcumbs]
 
         in
-            rawTemplate_  allHtml 0
+            allHtml
 
     {-
     Use all available bootswatch themes with the given inner Html content.
@@ -64,5 +67,6 @@ module Examples where
     main = do
         saveHtmlFile "examples/ex1.html" ex1
         saveAsAllBootswatchThemes "examples/ex1s" "ex" ex1InnerHtml
-        saveHtmlFile "examples/components.html" componentExample
+        saveHtmlFile "examples/components.html" (rawTemplate_ componentExample 0)
+        saveAsAllBootswatchThemes "examples/components" "components" componentExample
 
