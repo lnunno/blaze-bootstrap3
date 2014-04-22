@@ -5,6 +5,7 @@ module Javascript where
     import Text.Blaze.Html5 as H hiding (head,map)
     import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
+    import Data.Monoid
     import Models
     import Utils
     import Components
@@ -26,9 +27,9 @@ module Javascript where
             leftControl = a (glyphicon "chevron-left") ! class_ (toValue "left carousel-control") ! href carouselLink ! dataSlide (toValue "prev")
             rightControl = a (glyphicon "chevron-right") ! class_ (toValue "right carousel-control") ! href carouselLink ! dataSlide (toValue "next")
             controls = leftControl >> rightControl
-            lis      = concatHtml [li noHtml ! dataTarget carouselLink ! dataSlideTo (toValue (show i)) | i <- [0 .. length imgLinks]]
+            lis      = mconcat [li noHtml ! dataTarget carouselLink ! dataSlideTo (toValue (show i)) ! if i == 0 then class_ (toValue "active") else class_ (toValue "")| i <- [0 .. (length imgLinks)-1]]
             indicators = ol lis ! class_ (toValue "carousel-indicators")
-            items = concatHtml [H.div (img ! dataSrc (toValue imLink)) | imLink <- imgLinks]
+            items = mconcat [H.div (img ! src (toValue imLink)) ! if imLink == (head imgLinks) then class_ (toValue "item active") else class_ (toValue "item")| imLink <- imgLinks]
             innerCarousel = H.div items ! class_ (toValue "carousel-inner")
         in
-            H.div (indicators >> items >> innerCarousel >> controls) ! A.id (toValue carouselId) ! class_ (toValue "carousel-slide") ! dataRide (toValue "carousel")
+            H.div (indicators >> innerCarousel >> controls) ! A.id (toValue carouselId) ! class_ (toValue "carousel slide") ! dataRide (toValue "carousel")

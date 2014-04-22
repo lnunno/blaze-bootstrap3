@@ -61,6 +61,8 @@ module Examples where
         where
             footerBtns = mconcat [bootstrapButton Default (toHtml "Close"), bootstrapButton Primary (toHtml "Save Changes")]
 
+    simpleCarousel = carousel "myCarousel" ["http://media.wizards.com/images/magic/daily/wallpapers/Wallpapper_JOU_PW01_Miller_1920x1080.jpg","http://media.wizards.com/images/magic/daily/wallpapers/WeightoftheUnderworld_BNG_1920x1080_Wallpaper.jpg","http://media.wizards.com/images/magic/daily/wallpapers/Sunbond_BNG_1920x1080_Wallpaper.jpg"]
+
     {-
     Use all available bootswatch themes with the given inner Html content.
     -}
@@ -75,4 +77,5 @@ module Examples where
         saveHtmlFile "examples/components.html" (rawTemplate_ componentExample 0)
         saveAsAllBootswatchThemes "examples/components" "components" componentExample
         saveHtmlFile "examples/modal.html" (rawTemplate_ simpleModal 0)
+        saveHtmlFile "examples/carousel.html" (rawTemplate_ simpleCarousel 0)
 
