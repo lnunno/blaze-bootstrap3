@@ -78,4 +78,4 @@ module Models where
 
     dataRide = dataAttribute (stringTag "ride")
 
-    closeButton = button (toHtml "&times;") ! type_ (toValue "button") ! dismissModalAttribute ! ariaHidden (toValue "true")
+    closeButton = button (toHtml "x") ! type_ (toValue "button") ! dismissModalAttribute ! ariaHidden (toValue "true") ! class_ (toValue "close")

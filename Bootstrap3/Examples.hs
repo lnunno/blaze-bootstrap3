@@ -10,6 +10,7 @@ module Examples where
     import Templates
     import Models
     import CDN
+    import Javascript
 
     {-
     This example is pretty messy, but you should be able to get the idea. Should delegate some of the building of the inner html components to utility functions.
@@ -56,6 +57,10 @@ module Examples where
         in
             allHtml
 
+    simpleModal = modal (h4 (toHtml "Modal heading")) (p (toHtml "Modal body")) footerBtns
+        where
+            footerBtns = mconcat [bootstrapButton Default (toHtml "Close"), bootstrapButton Primary (toHtml "Save Changes")]
+
     {-
     Use all available bootswatch themes with the given inner Html content.
     -}
@@ -69,4 +74,5 @@ module Examples where
         saveAsAllBootswatchThemes "examples/ex1s" "ex" ex1InnerHtml
         saveHtmlFile "examples/components.html" (rawTemplate_ componentExample 0)
         saveAsAllBootswatchThemes "examples/components" "components" componentExample
+        saveHtmlFile "examples/modal.html" (rawTemplate_ simpleModal 0)
 
