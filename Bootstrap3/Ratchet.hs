@@ -9,6 +9,7 @@ module Ratchet where
     import Text.Blaze.Html5 as H hiding (head,map)
     import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
+    import Data.Monoid
     import Models
     import Utils
 
@@ -20,3 +21,15 @@ module Ratchet where
 
     tabItem :: Html -> AttributeValue -> Html
     tabItem innerHtml linkDest = a innerHtml ! class_ "tab-item" ! href linkDest
+
+    tabLabel :: Html -> Html
+    tabLabel innerHtml = H.span innerHtml ! class_ "tab-label"
+
+    tableView :: Html -> Html
+    tableView innerHtml = ul innerHtml ! class_ "table-view"
+
+    tableViewCell :: Html -> Html
+    tableViewCell innerHtml = li innerHtml ! class_ "table-view-cell"
+
+    tableViewDivider :: Html -> Html
+    tableViewDivider innerHtml = li innerHtml ! class_ "table-view-divider"
