@@ -13,6 +13,15 @@ module Ratchet where
     import Models
     import Utils
 
+    content :: Html -> Html
+    content innerHtml = H.div innerHtml ! class_ "content"
+
+    ratchicon :: String -> Html
+    ratchicon name = H.span noHtml ! class_ (toValue $ subStyleclasses "icon" [name])
+
+    contentPadded :: Html -> Html
+    contentPadded innerHtml = H.div innerHtml ! class_ "content-padded"
+
     titleBar :: Html -> Html
     titleBar innerHtml = header innerHtml ! class_ (toValue $ subStyleclasses "bar" ["nav"])
 
@@ -33,3 +42,8 @@ module Ratchet where
 
     tableViewDivider :: Html -> Html
     tableViewDivider innerHtml = li innerHtml ! class_ "table-view-divider"
+
+    toggle :: Html
+    toggle = H.div handle ! class_ "toggle"
+        where
+            handle = H.div noHtml ! class_ "toggle-handle"  

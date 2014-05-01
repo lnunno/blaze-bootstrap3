@@ -32,6 +32,7 @@ module CDN where
     ratchetAndroidCSS   = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/css/ratchet-theme-android.min.css" :: AttributeValue
     ratchetiOSCSS       = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/css/ratchet-theme-ios.min.css" :: AttributeValue
     ratchetJSLink       = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/js/ratchet.min.js" :: AttributeValue
+    ratchetIconsLink    = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/fonts/ratchicons.svg" :: AttributeValue
 
     ratchetJS = script noHtml ! src ratchetJSLink
 
