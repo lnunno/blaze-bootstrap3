@@ -27,6 +27,16 @@ module CDN where
     stylesheetVal =  "stylesheet"
     fontAwesomeVal =  "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
 
+    -- Ratchet files
+    ratchetCSS          = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/css/ratchet.min.css" :: AttributeValue
+    ratchetAndroidCSS   = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/css/ratchet-theme-android.min.css" :: AttributeValue
+    ratchetiOSCSS       = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/css/ratchet-theme-ios.min.css" :: AttributeValue
+    ratchetJSLink       = "http://www.cdn.jsdelivr.net/ratchet/2.0.2/js/ratchet.min.js" :: AttributeValue
+
+    ratchetJS = script noHtml ! src ratchetJSLink
+
+
+
     css :: Int -> Html
     css n        = link ! rel stylesheetVal ! href (cssLinks !! n)
 

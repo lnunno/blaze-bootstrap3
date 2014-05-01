@@ -52,6 +52,9 @@ module Models where
         show Active = "active"
         show _ = "" 
 
+
+    data RatchetType = Android | IOS | Standard deriving (Eq)
+
     {-
     Special style classes.
     -}
