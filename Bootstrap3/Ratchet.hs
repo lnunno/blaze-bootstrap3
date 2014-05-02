@@ -54,3 +54,24 @@ module Ratchet where
 
     ratchetButton :: [InfoType] -> Html -> Html
     ratchetButton infLs innerHtml = button innerHtml ! class_ (toValue $ subStyleclasses "btn" (map show infLs))
+
+    slider :: Html -> Html
+    slider innerHtml = H.div innerHtml ! class_ "slider"
+
+    slideGroup :: Html -> Html
+    slideGroup innerHtml = H.div innerHtml ! class_ "slide-group"
+
+    slide :: Html -> Html
+    slide innerHtml = H.div innerHtml ! class_ "slide"
+
+    slideText :: Html -> Html
+    slideText innerHtml = H.span innerHtml ! class_ "slide-text"
+    
+    easySlider :: [AttributeValue] -> Html
+    easySlider links = 
+        let
+            ims = [img ! src lnk | lnk <- links]
+            slds = mconcat $ toHtmlLs' ims (\h -> slide h)
+            grp = slideGroup slds
+        in
+            slider grp

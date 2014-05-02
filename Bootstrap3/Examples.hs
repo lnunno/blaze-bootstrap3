@@ -62,7 +62,9 @@ module Examples where
         where
             footerBtns = mconcat [bootstrapButton Default (toHtml "Close"), bootstrapButton Primary (toHtml "Save Changes")]
 
-    simpleCarousel = carousel "myCarousel" ["http://media.wizards.com/images/magic/daily/wallpapers/Wallpapper_JOU_PW01_Miller_1920x1080.jpg","http://media.wizards.com/images/magic/daily/wallpapers/WeightoftheUnderworld_BNG_1920x1080_Wallpaper.jpg","http://media.wizards.com/images/magic/daily/wallpapers/Sunbond_BNG_1920x1080_Wallpaper.jpg"]
+    mtgImages = ["http://media.wizards.com/images/magic/daily/wallpapers/Wallpapper_JOU_PW01_Miller_1920x1080.jpg","http://media.wizards.com/images/magic/daily/wallpapers/WeightoftheUnderworld_BNG_1920x1080_Wallpaper.jpg","http://media.wizards.com/images/magic/daily/wallpapers/Sunbond_BNG_1920x1080_Wallpaper.jpg"]
+
+    simpleCarousel = carousel "myCarousel" mtgImages
 
     {-
     Use all available bootswatch themes with the given inner Html content.
@@ -113,9 +115,12 @@ module Examples where
                     ctnt
                     ]
 
+    sliderEx = ratchetTemplate Standard (easySlider (map toValue mtgImages)) 
+
     generateRatchetExs :: IO ()
     generateRatchetExs = do
         saveAllRatchetPlatforms "examples/ratchet" "basic" basicRatchet
+        saveHtmlFile "examples/ratchet/sliderEx.html" sliderEx
 
     main = do
         saveHtmlFile "examples/ex1.html" ex1
