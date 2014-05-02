@@ -64,6 +64,12 @@ module Examples where
 
     mtgImages = ["http://media.wizards.com/images/magic/daily/wallpapers/Wallpapper_JOU_PW01_Miller_1920x1080.jpg","http://media.wizards.com/images/magic/daily/wallpapers/WeightoftheUnderworld_BNG_1920x1080_Wallpaper.jpg","http://media.wizards.com/images/magic/daily/wallpapers/Sunbond_BNG_1920x1080_Wallpaper.jpg"]
 
+    mtgImagesTablet = [
+        "http://media.wizards.com/images/magic/daily/wallpapers/Wallpaper_JOU_05_Barger_iPad.jpg",
+        "http://media.wizards.com/images/magic/daily/wallpapers/Wallpaper_KeyArt_JOU_iPad.jpg",
+        "http://media.wizards.com/images/magic/daily/wallpapers/Wallpapper_JOU_PW01_Miller_iPad.jpg"
+        ]
+
     simpleCarousel = carousel "myCarousel" mtgImages
 
     {-
@@ -115,7 +121,7 @@ module Examples where
                     ctnt
                     ]
 
-    sliderEx = ratchetTemplate Standard (easySlider (map toValue mtgImages)) 
+    sliderEx = ratchetTemplate Standard (easySlider (map toValue mtgImagesTablet)) 
 
     generateRatchetExs :: IO ()
     generateRatchetExs = do
