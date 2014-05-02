@@ -21,17 +21,28 @@ module Templates where
     rawTemplate innerHtml = rawTemplate_ innerHtml 0
 
     -- Ratchet 
+    metaTags :: Html
+    metaTags = mconcat [
+        meta ! name "viewport" ! content "initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui",
+        meta ! name "apple-mobile-web-app-capable" ! content "yes",
+        meta ! name "apple-mobile-web-app-status-bar-style" ! content "black"
+                ]
+
     ratchetTemplate :: RatchetType -> Html -> Html
     ratchetTemplate rtchType innerHtml = 
         let
-            cssLink 
-                | rtchType == Android = ratchetAndroidCSS
-                | rtchType == IOS     = ratchetiOSCSS
-                | otherwise           = ratchetCSS
-            rtchCSS = link ! rel stylesheetVal ! href cssLink
-            rtchImports = mconcat [rtchCSS,ratchetJS]
+            addCSS 
+                | rtchType == Android = link ! rel stylesheetVal ! href ratchetAndroidCSS
+                | rtchType == IOS     = link ! rel stylesheetVal ! href ratchetiOSCSS
+                | otherwise           = noHtml
+            rtchCSS = mconcat [
+                        -- Always add the base CSS.
+                        link ! rel stylesheetVal ! href ratchetCSS,
+                        -- Platform specific CSS.
+                        addCSS
+                      ]
+            rtchImports = mconcat [metaTags,rtchCSS,ratchetJS]
             rtchHead = H.head $ rtchImports
-
         in
             docTypeHtml $ rtchHead >> body innerHtml
 

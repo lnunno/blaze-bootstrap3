@@ -1,7 +1,7 @@
 module Examples where
 
     import Text.Blaze.Html5 hiding (nav,map,progress)
-    import Text.Blaze.Html5.Attributes
+    import Text.Blaze.Html5.Attributes hiding (content)
     import Text.Blaze.Html.Renderer.Pretty
     import Data.Monoid
     import Utils
@@ -11,6 +11,7 @@ module Examples where
     import Models
     import CDN
     import Javascript
+    import Ratchet
 
     {-
     This example is pretty messy, but you should be able to get the idea. Should delegate some of the building of the inner html components to utility functions.
@@ -71,6 +72,33 @@ module Examples where
 
     saveAsAllBootswatchThemes rootDir name innerHtml = sequence_ [saveHtmlFile (rootDir++"/"++(name ++ (show i))++".html") h | (i,h) <- (zip [0..(length cssLinks)-1] (allBootswatchThemes innerHtml))]
 
+
+    -- Ratchet
+    allRatchetPlatforms :: Html -> [Html]
+    allRatchetPlatforms innerHtml = [ratchetTemplate platform innerHtml | platform <- [Android .. Standard]]
+
+    saveAllRatchetPlatforms rootDir name innerHtml = sequence_ [saveHtmlFile (rootDir++"/"++(name ++ "-"++(show platform))++".html") h | (platform,h) <- (zip [Android .. Standard] (allRatchetPlatforms innerHtml))]
+
+    basicRatchet = innerHtml
+        where
+            topNav = titleBar $ h1 (toHtml "Title") ! class_ (toValue "title")
+            tvi1 = mconcat [
+                        if t == "Divider"
+                            then
+                                tableViewDivider (toHtml t)
+                            else
+                                tableViewCell (toHtml t >> toggle True)  | t <- ["Item 1", "Divider", "Item 2", "Item 3", "Divider", "Item 4"]
+                        ]
+            tbView = tableView tvi1
+            innerHtml = mconcat[
+                    topNav,
+                    content tbView
+                    ]
+
+    generateRatchetExs :: IO ()
+    generateRatchetExs = do
+        saveAllRatchetPlatforms "examples/ratchet" "basic" basicRatchet
+
     main = do
         saveHtmlFile "examples/ex1.html" ex1
         saveAsAllBootswatchThemes "examples/ex1s" "ex" ex1InnerHtml
@@ -78,4 +106,6 @@ module Examples where
         saveAsAllBootswatchThemes "examples/components" "components" componentExample
         saveHtmlFile "examples/modal.html" (rawTemplate_ simpleModal 0)
         saveHtmlFile "examples/carousel.html" (rawTemplate_ simpleCarousel 0)
+        
 
+    

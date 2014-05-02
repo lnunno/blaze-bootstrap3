@@ -53,7 +53,7 @@ module Models where
         show _ = "" 
 
 
-    data RatchetType = Android | IOS | Standard deriving (Eq)
+    data RatchetType = Android | IOS | Standard deriving (Show,Eq,Enum)
 
     {-
     Special style classes.

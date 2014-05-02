@@ -43,7 +43,8 @@ module Ratchet where
     tableViewDivider :: Html -> Html
     tableViewDivider innerHtml = li innerHtml ! class_ "table-view-divider"
 
-    toggle :: Html
-    toggle = H.div handle ! class_ "toggle"
+    toggle :: Bool -> Html
+    toggle isOn = H.div handle ! class_ classVal
         where
+            classVal = if isOn then "toggle active" else "toggle"
             handle = H.div noHtml ! class_ "toggle-handle"  
