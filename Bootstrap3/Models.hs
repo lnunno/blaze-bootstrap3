@@ -6,7 +6,19 @@ module Models where
     import Text.Blaze.Html5.Attributes as A
     import Text.Blaze.Html.Renderer.Pretty
 
-    data InfoType = Default | Primary | Success | Info | Warning | Danger | Link  deriving (Eq,Enum)
+    data InfoType = 
+        Default  | 
+        Primary  | 
+        Success  | 
+        Info     | 
+        Warning  | 
+        Danger   | 
+        Link     |
+        Block    |
+        Positive |
+        Negative |
+        Outlined
+        deriving (Eq,Enum)
 
     instance Show InfoType where
         show Default = "default"
@@ -16,6 +28,12 @@ module Models where
         show Warning = "warning"
         show Danger = "danger"
         show Link = "link"
+        show Block = "block"
+        show Positive = "positive"
+        show Negative = "negative"
+        show Outlined = "outlined"
+
+    ratchetInfoTypes = [Primary, Link, Positive, Negative]
 
     data Size = Large | Medium | Small | ExtraSmall | Normal deriving (Eq,Enum)
 

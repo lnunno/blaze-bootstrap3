@@ -16,11 +16,14 @@ module Ratchet where
     content :: Html -> Html
     content innerHtml = H.div innerHtml ! class_ "content"
 
-    ratchicon :: String -> Html
-    ratchicon name = H.span noHtml ! class_ (toValue $ subStyleclasses "icon" [name])
-
     contentPadded :: Html -> Html
     contentPadded innerHtml = H.div innerHtml ! class_ "content-padded"
+
+    card :: Html -> Html
+    card innerHtml = H.div innerHtml ! class_ "card"
+
+    ratchicon :: String -> Html
+    ratchicon name = H.span noHtml ! class_ (toValue $ subStyleclasses "icon" [name])
 
     titleBar :: Html -> Html
     titleBar innerHtml = header innerHtml ! class_ (toValue $ subStyleclasses "bar" ["nav"])
@@ -48,3 +51,6 @@ module Ratchet where
         where
             classVal = if isOn then "toggle active" else "toggle"
             handle = H.div noHtml ! class_ "toggle-handle"  
+
+    ratchetButton :: [InfoType] -> Html -> Html
+    ratchetButton infLs innerHtml = button innerHtml ! class_ (toValue $ subStyleclasses "btn" (map show infLs))

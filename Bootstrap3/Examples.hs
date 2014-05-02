@@ -81,7 +81,12 @@ module Examples where
 
     basicRatchet = innerHtml
         where
-            topNav = titleBar $ h1 (toHtml "Title") ! class_ (toValue "title")
+            topNav = tabBar $ mconcat [
+                                tabItem (ratchicon iconName >> (tabLabel (toHtml name))) (toValue "#")
+                                | (iconName,name) <- zip 
+                                                    ["home","person","star-filled","search","gear"]
+                                                    ["Home","Profile","Favorites","Search","Settings"]
+                              ]
             tvi1 = mconcat [
                         if t == "Divider"
                             then
@@ -89,10 +94,23 @@ module Examples where
                             else
                                 tableViewCell (toHtml t >> toggle True)  | t <- ["Item 1", "Divider", "Item 2", "Item 3", "Divider", "Item 4"]
                         ]
-            tbView = tableView tvi1
+            tbView = h2 (toHtml "Table Views") >> tableView tvi1
+            blockBtns = mconcat [
+                    ratchetButton [it,Block] (toHtml (show it)) | it <- ratchetInfoTypes
+                    ] >> mconcat [
+                    ratchetButton [it,Block,Outlined] (toHtml (show it)) | it <- ratchetInfoTypes
+                    ]
+            btns = h2 (toHtml "Buttons") >> mconcat [
+                    bootstrapButton_ infoType (toHtml (show infoType)) Normal 
+                    | infoType <- ratchetInfoTypes
+                    ] >> blockBtns
+            ctnt = content $ mconcat [
+                    tbView,
+                    btns
+                    ]
             innerHtml = mconcat[
                     topNav,
-                    content tbView
+                    ctnt
                     ]
 
     generateRatchetExs :: IO ()
